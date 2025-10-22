@@ -49,13 +49,13 @@ Capstone/
    npm install
    ```
 
-2. **Create .env file** in the root directory with the following content:
-   ```
-   PORT=3000
-   NODE_ENV=development
-   SESSION_SECRET=your-secret-key-here
-   DB_PATH=./database.db
-   ```
+2. **Create .env file** in the root directory:
+   
+   A `.env` file has been created for you with default values. For production, you should:
+   - Change the `SESSION_SECRET` to a random, secure string
+   - Update other values as needed
+   
+   Reference `.env.example` for the required environment variables.
 
 3. **Run the application**:
    ```bash
@@ -70,13 +70,40 @@ Capstone/
 4. **Access the application**:
    Open your browser and navigate to `http://localhost:3000`
 
+## Authentication Setup
+
+The authentication system has been implemented with the following features:
+
+- User login with username and password
+- Password hashing using bcryptjs (cost factor: 10)
+- Session-based authentication with express-session
+- Role-based access control (admin/staff)
+- Protected routes with authentication middleware
+
+### Test Users
+
+Two test users have been automatically created:
+
+- **Admin**: username: `admin`, password: `123`
+- **Staff**: username: `staff`, password: `123`
+
+### Login Flow
+
+1. Navigate to `http://localhost:3000`
+2. You'll be redirected to the login page
+3. Enter credentials (username and password)
+4. Upon successful login, you'll be redirected to the appropriate dashboard:
+   - Admin users → Admin Dashboard
+   - Staff users → Staff Dashboard
+5. Use the logout button to end your session
+
 ## Next Steps
 
-- Create database schema and initialization script
-- Set up authentication routes and middleware
-- Build HTML views for login, staff dashboard, and admin dashboard
-- Implement scheduling and task management features
-- Add styling and theme support
+- Implement staff dashboard features (view schedule, view tasks)
+- Implement admin dashboard features (manage staff, assign shifts, manage tasks)
+- Add scheduling and calendar functionality
+- Implement task management system
+- Add dark/light theme support
 
 ## Project Requirements
 
