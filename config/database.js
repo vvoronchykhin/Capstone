@@ -34,6 +34,25 @@ const initializeDatabase = async () => {
         console.log('Users table created or already exists');
       });
 
+      // Create tasks table
+      db.run(`
+        CREATE TABLE IF NOT EXISTS tasks (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          title TEXT NOT NULL,
+          description TEXT,
+          assigned_to INTEGER,
+          status TEXT DEFAULT 'pending',
+          created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+          FOREIGN KEY (assigned_to) REFERENCES users(id)
+        )
+      `, (err) => {
+        if (err) {
+          console.error('Error creating tasks table:', err.message);
+        } else {
+          console.log('Tasks table created or already exists');
+        }
+      });
+
       // Check if test users already exist
       db.get('SELECT COUNT(*) as count FROM users', async (err, row) => {
         if (err) {
@@ -102,8 +121,107 @@ const getUserByUsername = (username) => {
   });
 };
 
+// Get all users
+const getAllUsers = () => {
+  return new Promise((resolve, reject) => {
+    db.all('SELECT id, username, role FROM users', [], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+};
+
+// Get all tasks with user information
+const getAllTasks = () => {
+  return new Promise((resolve, reject) => {
+    db.all(`
+      SELECT tasks.*, users.username 
+      FROM tasks 
+      LEFT JOIN users ON tasks.assigned_to = users.id
+      ORDER BY tasks.created_at DESC
+    `, [], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+};
+
+// Get tasks for a specific user
+const getTasksByUserId = (userId) => {
+  return new Promise((resolve, reject) => {
+    db.all(`
+      SELECT tasks.*, users.username 
+      FROM tasks 
+      LEFT JOIN users ON tasks.assigned_to = users.id
+      WHERE tasks.assigned_to = ?
+      ORDER BY tasks.created_at DESC
+    `, [userId], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+};
+
+// Create a new task
+const createTask = (title, description, assignedTo) => {
+  return new Promise((resolve, reject) => {
+    db.run(
+      'INSERT INTO tasks (title, description, assigned_to) VALUES (?, ?, ?)',
+      [title, description, assignedTo || null],
+      function(err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve({ id: this.lastID });
+        }
+      }
+    );
+  });
+};
+
+// Delete a task
+const deleteTask = (id) => {
+  return new Promise((resolve, reject) => {
+    db.run('DELETE FROM tasks WHERE id = ?', [id], function(err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve({ changes: this.changes });
+      }
+    });
+  });
+};
+
+// Update task status
+const updateTaskStatus = (id, status) => {
+  return new Promise((resolve, reject) => {
+    db.run('UPDATE tasks SET status = ? WHERE id = ?', [status, id], function(err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve({ changes: this.changes });
+      }
+    });
+  });
+};
+
 module.exports = {
   initializeDatabase,
-  getUserByUsername
+  getUserByUsername,
+  getAllUsers,
+  getAllTasks,
+  getTasksByUserId,
+  createTask,
+  deleteTask,
+  updateTaskStatus
 };
 

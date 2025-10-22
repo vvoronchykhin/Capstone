@@ -20,24 +20,31 @@
     <div class="dashboard-content">
       <section class="welcome-section">
         <h2>Welcome, Staff Member!</h2>
-        <p>Your dashboard is being prepared. Check back soon!</p>
+        <p>View your assigned tasks below</p>
       </section>
       
+      <section class="staff-tasks-section">
+        <div class="section-header">
+          <h3>My Assigned Tasks</h3>
+        </div>
+
+        <!-- Tasks List -->
+        <div id="staff-tasks-container" class="tasks-list">
+          <p class="loading-text">Loading your tasks...</p>
+        </div>
+      </section>
+
       <section class="placeholder-section">
         <div class="placeholder-card">
           <h3>My Schedule</h3>
-          <p class="placeholder-text">Your schedule will appear here</p>
-        </div>
-        
-        <div class="placeholder-card">
-          <h3>My Tasks</h3>
-          <p class="placeholder-text">Your tasks will appear here</p>
+          <p class="placeholder-text">Your schedule - Coming soon</p>
         </div>
       </section>
     </div>
   </main>
   
   <script src="/js/dashboard.js"></script>
+  <script src="/js/staff-tasks.js"></script>
 </body>
 </html>
 

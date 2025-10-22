@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const { initializeDatabase } = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/', authRoutes);
+app.use('/api', taskRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
