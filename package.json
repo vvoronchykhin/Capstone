@@ -1,0 +1,26 @@
+{
+  "name": "staff-scheduling-app",
+  "version": "1.0.0",
+  "description": "College capstone project for staff scheduling and task management",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "scheduling",
+    "staff-management",
+    "task-management"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "dotenv": "^16.3.1",
+    "express-validator": "^7.0.1",
+    "bcryptjs": "^2.4.3",
+    "express-session": "^1.17.3"
+  }
+}
+

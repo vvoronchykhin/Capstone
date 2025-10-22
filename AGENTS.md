@@ -31,6 +31,23 @@ This is a college capstone project for a web application for staff scheduling an
 - Do not use any other frameworks, libraries (except essential npm packages), or databases
 - Keep the project simple and avoid adding unnecessary dependencies
 
+# Project Structure
+
+- Organize code into the following directory structure:
+  - `config/` - Database configuration and application settings
+  - `middleware/` - Custom middleware for authentication, validation, and error handling
+  - `routes/` - Express Router modules for different feature areas
+  - `public/` - Static assets served directly to the client
+    - `public/css/` - Stylesheet files for styling
+    - `public/js/` - Client-side JavaScript files
+  - `views/` - HTML template files for different pages
+- Place the main application entry point as `server.js` in the root directory
+- Store the SQLite database file in the root directory as specified in environment variables
+- Use a `.env` file for environment-specific configuration (never commit this file)
+- Create a `.env.example` file with placeholder values for required environment variables
+- Maintain separation of concerns by keeping route logic, middleware, and configuration in separate files
+- Use descriptive file names that reflect their purpose (e.g., `authRoutes.js`, `authMiddleware.js`)
+
 # Express.js rules
 
 - Use proper middleware order: body parsers, custom middleware, routes, error handlers
