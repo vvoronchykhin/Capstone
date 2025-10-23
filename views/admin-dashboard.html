@@ -20,65 +20,36 @@
     <div class="dashboard-content">
       <section class="welcome-section">
         <h2>Welcome, Administrator!</h2>
-        <p>Manage tasks and assign them to staff members</p>
+        <p>Select a section below to get started</p>
       </section>
       
-      <section class="task-management-section">
-        <div class="section-header">
-          <h3>Task Management</h3>
-          <button id="add-task-btn" class="btn btn-primary">Add New Task</button>
-        </div>
-
-        <!-- Add Task Form (hidden by default) -->
-        <div id="task-form-container" class="task-form" style="display: none;">
-          <h4>Create New Task</h4>
-          <form id="task-form">
-            <div class="form-group">
-              <label for="task-title">Task Title *</label>
-              <input type="text" id="task-title" name="title" required placeholder="Enter task title">
-            </div>
-            
-            <div class="form-group">
-              <label for="task-description">Description</label>
-              <textarea id="task-description" name="description" rows="3" placeholder="Enter task description"></textarea>
-            </div>
-            
-            <div class="form-group">
-              <label for="task-assign">Assign To</label>
-              <select id="task-assign" name="assignedTo">
-                <option value="">Select a user...</option>
-              </select>
-            </div>
-            
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Create Task</button>
-              <button type="button" id="cancel-task-btn" class="btn btn-secondary">Cancel</button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Tasks List -->
-        <div id="tasks-container" class="tasks-list">
-          <p class="loading-text">Loading tasks...</p>
-        </div>
-      </section>
-
-      <section class="placeholder-section">
-        <div class="placeholder-card">
-          <h3>Manage Staff</h3>
-          <p class="placeholder-text">Staff management tools - Coming soon</p>
-        </div>
-        
-        <div class="placeholder-card">
-          <h3>Schedule Management</h3>
-          <p class="placeholder-text">Scheduling tools - Coming soon</p>
+      <section class="admin-nav-section">
+        <div class="admin-nav-grid">
+          <a href="/task-management" class="nav-card">
+            <div class="nav-card-icon">📋</div>
+            <h3>Task Management</h3>
+            <p>Create, assign, and manage tasks for staff members</p>
+          </a>
+          
+          <div class="nav-card nav-card-disabled">
+            <div class="nav-card-icon">👥</div>
+            <h3>Manage Staff</h3>
+            <p>Add, edit, and manage staff accounts</p>
+            <span class="coming-soon-badge">Coming Soon</span>
+          </div>
+          
+          <div class="nav-card nav-card-disabled">
+            <div class="nav-card-icon">📅</div>
+            <h3>Schedule Management</h3>
+            <p>Create and manage staff schedules and shifts</p>
+            <span class="coming-soon-badge">Coming Soon</span>
+          </div>
         </div>
       </section>
     </div>
   </main>
   
   <script src="/js/dashboard.js"></script>
-  <script src="/js/admin-tasks.js"></script>
 </body>
 </html>
 

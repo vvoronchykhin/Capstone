@@ -119,5 +119,10 @@ router.get('/admin-dashboard', isAuthenticated, isAdmin, (req, res) => {
   res.sendFile(path.join(__dirname, '../views/admin-dashboard.html'));
 });
 
+// Task management route (protected - admin only)
+router.get('/task-management', isAuthenticated, isAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/task-management.html'));
+});
+
 module.exports = router;
 

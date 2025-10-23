@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Management - Staff Scheduling App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1>Task Management</h1>
+      <nav class="header-nav">
+        <a href="/admin-dashboard" class="btn btn-secondary">Back to Dashboard</a>
+        <button id="logout-btn" class="btn btn-secondary">Logout</button>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="dashboard-main">
+    <div class="dashboard-content">
+      <section class="page-header-section">
+        <div class="page-header">
+          <div>
+            <h2>Manage Tasks</h2>
+            <p>Create, assign, and manage tasks for staff members</p>
+          </div>
+          <button id="add-task-btn" class="btn btn-primary">Add New Task</button>
+        </div>
+      </section>
+      
+      <section class="task-management-section">
+        <!-- Add Task Form (hidden by default) -->
+        <div id="task-form-container" class="task-form" style="display: none;">
+          <h4>Create New Task</h4>
+          <form id="task-form">
+            <div class="form-group">
+              <label for="task-title">Task Title *</label>
+              <input type="text" id="task-title" name="title" required placeholder="Enter task title">
+            </div>
+            
+            <div class="form-group">
+              <label for="task-description">Description</label>
+              <textarea id="task-description" name="description" rows="3" placeholder="Enter task description"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="task-assign">Assign To</label>
+              <select id="task-assign" name="assignedTo">
+                <option value="">Select a user...</option>
+              </select>
+            </div>
+            
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Create Task</button>
+              <button type="button" id="cancel-task-btn" class="btn btn-secondary">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Tasks List -->
+        <div id="tasks-container" class="tasks-list">
+          <p class="loading-text">Loading tasks...</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <script src="/js/dashboard.js"></script>
+  <script src="/js/task-management.js"></script>
+</body>
+</html>
+
